@@ -1,22 +1,44 @@
-const express = require("express");
-const { convertToRoman } = require("./path-to-your-function");
-const app = express();
-
-app.use(express.json());
-
-app.post("/romanConverter", (req, res) => {
-    const { input } = req.body;
-    if (typeof input !== "number" || input < 0 || input > 100000) {
-        return res.status(400).json({ error: "Invalid input" });
+function convertToRoman(num) {
+    // Validate input range
+    if (num < 0 || num > 100000) {
+        return "Invalid input: Number out of range (0 <= x <= 100000)";
     }
-    try {
-        const roman = convertToRoman(input);
-        res.status(200).json({ roman });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send("Internal Server Error");
+    if (num === 0) {
+        return "Roman numerals are not defined for zero.";
     }
-});
 
-const PORT = 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    // Roman numeral symbols and their values
+    const romanSymbols = [
+        ['M', 1000],
+        ['CM', 900],
+        ['D', 500],
+        ['CD', 400],
+        ['C', 100],
+        ['XC', 90],
+        ['L', 50],
+        ['XL', 40],
+        ['X', 10],
+        ['IX', 9],
+        ['V', 5],
+        ['IV', 4],
+        ['I', 1]
+    ];
+
+    let romanNumeral = "";
+
+    // Convert number to Roman numeral
+    for (let [symbol, value] of romanSymbols) {
+        while (num >= value) {
+            romanNumeral += symbol; // Append the Roman numeral
+            num -= value;           // Reduce the number
+        }
+    }
+
+    return romanNumeral; // Return the final Roman numeral
+}
+
+// Example Usage
+console.log(convertToRoman(14));  // Output: XIV
+console.log(convertToRoman(798)); // Output: DCCXCVIII
+console.log(convertToRoman(0));   // Output: Roman numerals are not defined for zero.
+console.log(convertToRoman(100001)); // Output: Invalid input: Number out of range (0 <= x <= 100000)
