@@ -1,44 +1,40 @@
 function convertToRoman(num) {
-    // Validate input range
-    if (num < 0 || num > 100000) {
-        return "Invalid input: Number out of range (0 <= x <= 100000)";
-    }
-    if (num === 0) {
-        return "Roman numerals are not defined for zero.";
+    if (num <= 0 || num > 100000) {
+        return "Input out of range (0 <= x <= 100000)";
     }
 
     // Roman numeral symbols and their values
     const romanSymbols = [
-        ['M', 1000],
-        ['CM', 900],
-        ['D', 500],
-        ['CD', 400],
-        ['C', 100],
-        ['XC', 90],
-        ['L', 50],
-        ['XL', 40],
-        ['X', 10],
-        ['IX', 9],
-        ['V', 5],
-        ['IV', 4],
+        ['M', 1000], 
+        ['CM', 900], 
+        ['D', 500], 
+        ['CD', 400], 
+        ['C', 100], 
+        ['XC', 90], 
+        ['L', 50], 
+        ['XL', 40], 
+        ['X', 10], 
+        ['IX', 9], 
+        ['V', 5], 
+        ['IV', 4], 
         ['I', 1]
     ];
 
-    let romanNumeral = "";
+    let result = '';
 
-    // Convert number to Roman numeral
-    for (let [symbol, value] of romanSymbols) {
+    // Convert the number to a Roman numeral
+    for (const [symbol, value] of romanSymbols) {
         while (num >= value) {
-            romanNumeral += symbol; // Append the Roman numeral
-            num -= value;           // Reduce the number
+            result += symbol;
+            num -= value;
         }
     }
 
-    return romanNumeral; // Return the final Roman numeral
+    return result;
 }
 
-// Example Usage
-console.log(convertToRoman(14));  // Output: XIV
-console.log(convertToRoman(798)); // Output: DCCXCVIII
-console.log(convertToRoman(0));   // Output: Roman numerals are not defined for zero.
-console.log(convertToRoman(100001)); // Output: Invalid input: Number out of range (0 <= x <= 100000)
+// Example usage
+console.log(convertToRoman(14));     // Output: XIV
+console.log(convertToRoman(798));    // Output: DCCXCVIII
+console.log(convertToRoman(0));      // Output: Input out of range (0 <= x <= 100000)
+console.log(convertToRoman(100000)); // Output: MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
