@@ -1,40 +1,34 @@
 function convertToRoman(num) {
-    if (num <= 0 || num > 100000) {
-        return "Input out of range (0 <= x <= 100000)";
+    if (num < 0 || num > 100000) {
+        return "Input out of range";
     }
 
-    // Roman numeral symbols and their values
     const romanSymbols = [
-        ['M', 1000], 
-        ['CM', 900], 
-        ['D', 500], 
-        ['CD', 400], 
-        ['C', 100], 
-        ['XC', 90], 
-        ['L', 50], 
-        ['XL', 40], 
-        ['X', 10], 
-        ['IX', 9], 
-        ['V', 5], 
-        ['IV', 4], 
+        ['M', 1000],
+        ['CM', 900],
+        ['D', 500],
+        ['CD', 400],
+        ['C', 100],
+        ['XC', 90],
+        ['L', 50],
+        ['XL', 40],
+        ['X', 10],
+        ['IX', 9],
+        ['V', 5],
+        ['IV', 4],
         ['I', 1]
     ];
 
-    let result = '';
+    let romanNumeral = "";
 
-    // Convert the number to a Roman numeral
-    for (const [symbol, value] of romanSymbols) {
+    for (let [symbol, value] of romanSymbols) {
         while (num >= value) {
-            result += symbol;
+            romanNumeral += symbol;
             num -= value;
         }
     }
 
-    return result;
+    return romanNumeral;
 }
 
-// Example usage
-console.log(convertToRoman(14));     // Output: XIV
-console.log(convertToRoman(798));    // Output: DCCXCVIII
-console.log(convertToRoman(0));      // Output: Input out of range (0 <= x <= 100000)
-console.log(convertToRoman(100000)); // Output: MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+module.exports = convertToRoman;
